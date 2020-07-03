@@ -1,8 +1,8 @@
 .sidebar {
-     background: #40E0D0;
-     width: 280px;
+     background: #4167E1;
+     width: 240px;
      position: fixed;
-     font-size: 18px;
+     font-size: 16px;
      overflow: scroll;
      overflow-x: hidden;
      height: 100%;
@@ -11,7 +11,7 @@
 .sidebar a {
   display: block;
   color: black;
-  padding: 16px;
+  padding: 10px;
   text-decoration: none;
 }
 
@@ -26,5 +26,5 @@
 }
 
 body {
-    background: #BDBDBD;
+    background: #91A6EB;
 }

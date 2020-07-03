@@ -7,11 +7,12 @@
 </head>
 <body>
 <!-- left sidebar -->
-<div class="sidebar">
-    <img src="/facing/img/logo1.png" align="center">
+<br class="sidebar">
+    <img src="/facing/img/fon1.png" align="center">
     <div th:each="list: ${lists}">
         <a th:href="@{/list/{id}(id=${list.getId()})}" th:utext="${list.getName()}"></a>
     </div>
+    <br>
     <a th:href="@{/addlist}">Add new message</a>
 </div>
 </body>

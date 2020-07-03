@@ -1,0 +1,30 @@
+.sidebar {
+     background: #40E0D0;
+     width: 280px;
+     position: fixed;
+     font-size: 18px;
+     overflow: scroll;
+     overflow-x: hidden;
+     height: 100%;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.sidebar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+body {
+    background: #BDBDBD;
+}

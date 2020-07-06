@@ -3,17 +3,17 @@
 <head>
     <title>Notes</title>
     <meta charset = "utf-8">
-    <link rel = "stylesheet" href="/facing/css/style.css">
+    <link rel = "stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 <!-- left sidebar -->
-<br class="sidebar">
-    <img src="/facing/img/fon1.png" align="center">
+<div class="sidebar">
+    <img src="/assets/img/fon3.png" align="center" width="300" height="250">
     <div th:each="list: ${lists}">
         <a th:href="@{/list/{id}(id=${list.getId()})}" th:utext="${list.getName()}"></a>
     </div>
-    <br>
-    <a th:href="@{/addlist}">Add new message</a>
+    <a th:href="@{/addlist}"><img src="/assets/img/plus3.png" align="center" width="20" height="20"></a>
+
 </div>
 </body>
 </html>

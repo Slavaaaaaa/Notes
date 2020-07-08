@@ -22,13 +22,11 @@ public class AddController {
     }
 
     @RequestMapping(value={"/addlist"}, method=RequestMethod.POST)
-    public String listSubmit(@ModelAttribute ListEntity addlist, Model model) {
+    public String listSubmit(@ModelAttribute ListEntity addlist) {
         if (StringUtils.hasText(addlist.getName())){
             listRep.save(new ListEntity(addlist.getName()));
         }
-
-        return "redirect:/list";
+        return "redirect:/";
     }
 
 }
-

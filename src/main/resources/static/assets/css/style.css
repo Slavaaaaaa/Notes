@@ -1,4 +1,4 @@
-.sidebar {
+.leftside {
     background: #2F5AE9;
     width: 300px;
     position: fixed;
@@ -8,11 +8,18 @@
     height: 100%;
 }
 
-.sidebar a {
+.leftside a {
     display: block;
     color: black;
     padding: 16px;
     text-decoration: underline;
+}
+.main {
+  margin-left: 300px;
+  padding: 0px 10px;
+  height: 100%;
+  width: 400px;
+  font-size: 18px;
 }
 body {
     background-color: #FFFFF;

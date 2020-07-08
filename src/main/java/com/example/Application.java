@@ -16,8 +16,8 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(Application.class);
-        ListRepository books = context.getBean(ListRepository.class);
-        IssueRepository tasks = context.getBean(IssueRepository.class);
+        ListRepository lists = context.getBean(ListRepository.class);
+        IssueRepository issues = context.getBean(IssueRepository.class);
     }
 
 }

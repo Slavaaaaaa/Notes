@@ -3,6 +3,7 @@ package com.example.domain;
 import java.util.Date;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -10,9 +11,9 @@ public class IssueEntity {
 
     @Id
     @GeneratedValue
-    private long id;
-    private long parent_id;
-    private String tittle;
+    private Long id;
+    private Long parent_id;
+    private String title;
     private String discription;
     private Boolean done;
     @Temporal(TemporalType.TIMESTAMP)
@@ -24,19 +25,19 @@ public class IssueEntity {
 
     public IssueEntity() {}
 
-    public IssueEntity(long parent_id, String tittle) {
-        this(null, parent_id, tittle, "", false, null, null, null);
+    public IssueEntity(Long parent_id, String title) {
+        this(null, parent_id, title, null, false, null, null, null);
 
         LocalDateTime currentDataTime = LocalDateTime.now();
         this.createDate = Date.from(currentDataTime.atZone(ZoneId.systemDefault()).toInstant());
         this.updateDate = createDate;
     }
 
-    public IssueEntity(Long id, long parent_id, String tittle, String discription, Boolean done,
-                       Date createDate, Date updateDate, Date date) {
+    public IssueEntity(Long id, Long parent_id, String title, String discription, Boolean done,
+                      Date createDate, Date updateDate, Date date) {
         this.id = id;
         this.parent_id = parent_id;
-        this.tittle = tittle;
+        this.title = title;
         this.discription = discription;
         this.done = done;
         this.createDate = createDate;
@@ -56,16 +57,16 @@ public class IssueEntity {
         this.parent_id = parent_id;
     }
 
-    public Long getParentId(Long parent_id){
+    public Long getParentId(){
         return parent_id;
     }
 
-    public void setTittle(String tittle){
-        this.tittle = tittle;
+    public void setTitle(String tittle){
+        this.title = tittle;
     }
 
-    public String getTittle(){
-        return tittle;
+    public String getTitle(){
+        return title;
     }
 
     public void setDiscription(String discription){

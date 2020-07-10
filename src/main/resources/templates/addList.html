@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel = "stylesheet" href="/assets/css/style.css">
 </head>
-<body align="center">
-<h1>Добавить в список</h1>
-<form action="#" th:action="@{/addlist}" th:object="${addlist}" method="post">
-    <p>Название: <input type="text" th:field="*{name}" /></p>
-    <p><input type="submit" value="Добавить" /> </p>
-</form>
-</body>
+<div class="main1" align="center">
+    <h1>Добавить в заметки</h1>
+    <form action="#" th:action="@{/addlist}" th:object="${addlist}" method="post">
+        <p>Название: <input type="text" th:field="*{name}" /></p>
+        <button type="submit" class="btn btn-outline-default"><img src="/assets/img/plus2.png" align="center" width="20" height="20"></button>
+    </form>
+</div>
 </html>

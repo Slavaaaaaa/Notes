@@ -18,60 +18,69 @@ public class IndexController {
     private ListRepository listRep;
     @Autowired
     private IssueRepository issueRep;
+
     @RequestMapping(value = {"/", "/list"}, method = RequestMethod.GET)
     public String getIndex(Model model){
         Map<Long, ListEntity> lists = getLists();
         Iterable<IssueEntity> issues = issueRep.findAll();
+
         model.addAttribute("lists", lists.values());
         model.addAttribute("currentList", lists.get(null));
         model.addAttribute("issues", issues);
-        return "index";
+
+        return "index1";
     }
 
     @RequestMapping(value = {"/list/{id}"}, method = RequestMethod.GET)
-    public String getIndex(Model model, @PathVariable long id){
+    public String getIndex(Model model, @PathVariable Long id){
         Map<Long, ListEntity> lists = getLists();
-        Map<Long, IssueEntity> issues = getIssues();
+        Map<Long, IssueEntity> issues = getIssues(id);
+
         model.addAttribute("lists", lists.values());
         model.addAttribute("currentList", lists.get(id));
         model.addAttribute("issues", issues.values());
-        return "index";
+
+        return "index1";
     }
 
     private Map<Long, ListEntity> getLists(){
         Map<Long, ListEntity> result = new HashMap<>();
         Iterable<ListEntity> lists = listRep.findAll();
+
+        result.put(null, new ListEntity("Все"));
+
         for (ListEntity entity: lists) {
             result.put(entity.getId(), entity);
         }
         return result;
     }
-    private Map<Long, IssueEntity> getIssues(){
+
+    private Map<Long, IssueEntity> getIssues(Long id){
         Map<Long, IssueEntity> result = new HashMap<>();
         Iterable<IssueEntity> issues = issueRep.findAll();
+
         for (IssueEntity entity: issues) {
-            result.put(entity.getId(), entity);
+            if (entity.getParentId() == id)
+                result.put(entity.getId(), entity);
         }
         return result;
     }
-//    @RequestMapping(value = {"/list/{id}"}, method = RequestMethod.GET)
-//    public String Details(@PathVariable(value = "id") long id, Model model){
-//        Optional<ListEntity> list = listRep.findById(id);
-//        ArrayList<ListEntity> res = new ArrayList<>();
-//        list.ifPresent(res::add);
-//        model.addAttribute("list", res);
-//        return "details";
-//    }
+
     @RequestMapping(value = {"/list/{id}/delete"})
     public String removeList(@PathVariable Long id) {
         listRep.deleteById(id);
         return "redirect:/list";
     }
-    @RequestMapping(value={"/list/issue"}, method=RequestMethod.POST)
-    public String addIssue(@ModelAttribute IssueEntity issue, Model model) {
-        issueRep.save(new IssueEntity(issue.getParentId(), issue.getTitle()));
-        return "redirect:/list" + issue.getParentId();
+
+    @RequestMapping(value = "/list/addissue", method = RequestMethod.GET)
+    public String issueForm(Model model) {
+        model.addAttribute("addissue", new IssueEntity());
+        return "addissue";
     }
 
-
+    @RequestMapping(value = {"/list/addissue"}, method = RequestMethod.POST)
+    public String categorySubmit(@ModelAttribute IssueEntity addissue, Model model){
+        issueRep.save(new IssueEntity(addissue.getParentId(), addissue.getTitle()));
+        return "redirect:/list" + addissue.getParentId();
+    }
 }

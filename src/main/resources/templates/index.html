@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:padding-bottom="http://www.w3.org/1999/xhtml" xmlns:padding-top="http://www.w3.org/1999/xhtml"
+      xmlns:margin-top="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Notes</title>
+    <meta charset = "utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel = "stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<!-- leftside -->
+<div class="leftside">
+    <img src="/assets/img/fon3.png" align="center" width="300" height="250">
+    <div th:each="list: ${lists}">
+        <a th:href="@{/list/{id}(id=${list.getId()})}" th:utext="${list.getName()}"></a>
+    </div>
+    <a th:href="@{/addlist}"><img src="/assets/img/plus3.png" align="center" width="20" height="20"></a>
+</div>
+<!-- main -->
+<div class="main" align="center">
+    <h1 th:utext="${currentList.getName()}"></h1>
+    <div class="dropdown" align="center">
+        <button  class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="/assets/img/change.png" align="center" width="20" height="20">
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2" align="center">
+            <form action="#" th:action="@{/list/{id}/delete (id=${currentList.getId()})}">
+                <button type="submit" class="btn btn-outline-danger"><img src="/assets/img/del1.png" width="20" height="20"></button>
+            </form>
+        </div>
+    </div>
+    <div id="dialog" title="Добавление задачи" align="center">
+        <form action="#" th:action="@{/list/addissue (id=${currentList.getId()})}" method="post" >
+            <input type="text" name="title">
+            <input type="hidden" name="parentId" th:value="${currentList.getId()}">
+            <button type="submit" class="btn btn-outline-success"><img src="/assets/img/plus2.png" align="center" width="20" height="20"></button>
+        </form>
+    </div>
+    <p></p>
+    <div>
+        <p><button type="submit" class="btn btn-outline-success"><img src="/assets/img/plus2.png" width="20" height="20"></button></p>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+    <script>
+        var dialog = $("#dialog").dialog({autoOpen: false});
+        $("button[type=submit]").click(function ()
+            {
+            dialog.dialog( "open" );
+            });
+    </script>
+    <div th:each="issue: ${issues}">
+        <p></p>
+        <input type="checkbox">
+        <label th:utext="${issue.getTitle()}"></label>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</div>
+</body>
+</html>

@@ -1,13 +1,13 @@
 .leftside {
-    background: #2F5AE9;
-    width: 300px;
+    background: #2DE01A;
+    width: 280px;
     position: fixed;
+    font-family: Arial;
     font-size: 18px;
     overflow: scroll;
     overflow-x: hidden;
     height: 100%;
 }
-
 .leftside a {
     display: block;
     color: black;
@@ -25,7 +25,12 @@
   margin: 0px;
   font-size: 14px;
 }
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
 body {
-    background-color: #FFFFF;
+    background-color: #BDBDBD;
     margin-left: 0px;
 }

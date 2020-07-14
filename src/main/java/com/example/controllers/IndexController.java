@@ -28,7 +28,7 @@ public class IndexController {
         model.addAttribute("currentList", lists.get(null));
         model.addAttribute("issues", issues);
 
-        return "index1";
+        return "index";
     }
 
     @RequestMapping(value = {"/list/{id}"}, method = RequestMethod.GET)
@@ -40,7 +40,7 @@ public class IndexController {
         model.addAttribute("currentList", lists.get(id));
         model.addAttribute("issues", issues.values());
 
-        return "index1";
+        return "index";
     }
 
     private Map<Long, ListEntity> getLists(){
@@ -81,6 +81,6 @@ public class IndexController {
     @RequestMapping(value = {"/list/addissue"}, method = RequestMethod.POST)
     public String categorySubmit(@ModelAttribute IssueEntity addissue, Model model){
         issueRep.save(new IssueEntity(addissue.getParentId(), addissue.getTitle()));
-        return "redirect:/list" + addissue.getParentId();
+        return "redirect:/list/" + addissue.getParentId();
     }
 }

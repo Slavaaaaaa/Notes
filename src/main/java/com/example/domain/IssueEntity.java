@@ -92,4 +92,5 @@ public class IssueEntity {
     public Date getate(){
         return date;
     }
+
 }

@@ -71,7 +71,13 @@ public class IndexController {
         listRep.deleteById(id);
         return "redirect:/list";
     }
-
+    @RequestMapping(value = {"/issue/{issueId}/delete"})
+    public String removeIssue(@PathVariable Long issueId) {
+        IssueEntity issue = issueRep.findById((long)issueId);
+        Long id = issue.getParentId();
+        issueRep.deleteById(issueId);
+        return "redirect:/list/" + id;
+    }
     @RequestMapping(value = "/list/addissue", method = RequestMethod.GET)
     public String issueForm(Model model) {
         model.addAttribute("addissue", new IssueEntity());

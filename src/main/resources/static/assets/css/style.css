@@ -30,6 +30,9 @@ div.content {
   padding: 1px 16px;
   height: 1000px;
 }
+.plus{
+  padding-top: 20px;
+}
 body {
     background-color: #BDBDBD;
     margin-left: 0px;

@@ -45,9 +45,10 @@ public class IndexController {
 
     private Map<Long, ListEntity> getLists(){
         Map<Long, ListEntity> result = new HashMap<>();
+
         Iterable<ListEntity> lists = listRep.findAll();
 
-        result.put(null, new ListEntity("Все"));
+        result.put(null, new ListEntity("Cервис заметок"));
 
         for (ListEntity entity: lists) {
             result.put(entity.getId(), entity);
@@ -59,13 +60,14 @@ public class IndexController {
         Map<Long, IssueEntity> result = new HashMap<>();
         Iterable<IssueEntity> issues = issueRep.findAll();
 
-        for (IssueEntity entity: issues) {
+        for (IssueEntity entity : issues) {
             if (entity.getParentId() == id)
                 result.put(entity.getId(), entity);
         }
+
         return result;
     }
-
+    //Удаление
     @RequestMapping(value = {"/list/{id}/delete"})
     public String removeList(@PathVariable Long id) {
         listRep.deleteById(id);
@@ -76,8 +78,11 @@ public class IndexController {
         IssueEntity issue = issueRep.findById((long)issueId);
         Long id = issue.getParentId();
         issueRep.deleteById(issueId);
-        return "redirect:/list/" + id;
+        if (id != null)
+            return "redirect:/list/" + id;
+        return "redirect:/list/";
     }
+    //Добавление задач
     @RequestMapping(value = "/list/addissue", method = RequestMethod.GET)
     public String issueForm(Model model) {
         model.addAttribute("addissue", new IssueEntity());

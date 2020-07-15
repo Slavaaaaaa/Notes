@@ -46,42 +46,51 @@ public class IssueEntity {
     }
 
     public void setId(Long id){
+
         this.id = id;
     }
 
     public Long getId(){
+
         return id;
     }
 
-    public void setParentId(Long parent_id){
+    public void setParentId(Long parent_id) {
         this.parent_id = parent_id;
     }
 
     public Long getParentId(){
+
         return parent_id;
     }
 
     public void setTitle(String tittle){
+
         this.title = tittle;
     }
 
     public String getTitle(){
+
         return title;
     }
 
     public void setDiscription(String discription){
+
         this.discription = discription;
     }
 
     public String getDiscription(){
+
         return discription;
     }
 
     public void setDone(Boolean done){
+
         this.done = done;
     }
 
     public Boolean getDone(){
+
         return done;
     }
 

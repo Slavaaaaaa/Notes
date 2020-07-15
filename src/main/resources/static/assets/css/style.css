@@ -1,8 +1,8 @@
 .leftside {
-    background: #2DE01A;
+    background: #D9D8D8;
     width: 280px;
     position: fixed;
-    font-family: Arial;
+    font-family: Bold;
     font-size: 18px;
     overflow: scroll;
     overflow-x: hidden;
@@ -15,25 +15,18 @@
     text-decoration: underline;
 }
 .main {
-  margin-left: 700px;
+  margin-left: 200px;
   padding: 20px 20px;
-  height: 100%;
-  width: 400px;
-  font-size: 16px;
+  font-family: Bold;
+  font-size: 18px;
+  max-width: 100%;
 }
 .main1 {
-  margin: 0px;
-  font-size: 14px;
-}
-div.content {
-  margin-left: 200px;
-  padding: 1px 16px;
-  height: 1000px;
-}
-.plus{
+  max-width: 100%;
   padding-top: 20px;
+  font-family: Bold;
+  font-size: 18px;
 }
-body {
-    background-color: #BDBDBD;
-    margin-left: 0px;
+body{
+  background: url(/assets/img/doska3.jpg);
 }

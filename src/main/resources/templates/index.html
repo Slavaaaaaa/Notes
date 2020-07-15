@@ -12,34 +12,42 @@
 <body>
 <!-- leftside -->
 <div class="leftside">
-    <img src="/assets/img/fon3.png" align="center" width="300" height="250">
+    <img src="/assets/img/fon1.jpg" align="center" width="300" height="250">
     <div th:each="list: ${lists}">
-        <a th:href="@{/list/{id}(id=${list.getId()})}" th:utext="${list.getName()}"></a>
+        <a th:href="@{/list/{id}(id=${list.getId()})}" th:if="${list.getId()} != null" th:utext="${list.getName()}"></a>
     </div>
     <a th:href="@{/addlist}"><img src="/assets/img/plus3.png" align="center" width="20" height="20"></a>
 </div>
+
 <!-- main -->
 <div class="main" align="center">
     <h1 th:utext="${currentList.getName()}"></h1>
     <div class="dropdown" align="center">
-        <button  class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="/assets/img/change.png" align="center" width="20" height="20">
-        </button>
+        <span th:if="${currentList.getId()} != null">
+            <button  class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true">
+                <img src="/assets/img/change.png" align="center" width="20" height="20">
+            </button>
+
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2" align="center">
-            <form action="#" th:action="@{/list/{id}/delete (id=${currentList.getId()})}">
-                <button type="submit" class="btn btn-outline-danger"><img src="/assets/img/del1.png" width="20" height="20"></button>
+            <a  th:href="@{/list/{id}/update (id=${currentList.getId()})}">
+                <button type="button" class="btn btn-outline-primary"><img src="/assets/img/edit.png" align="center" width="20" height="20"></button>
+            </a>
+            <form action="#"  th:action="@{/list/{id}/delete (id=${currentList.getId()})}">
+                <button class="btn btn-outline-danger"><img src="/assets/img/del1.png" width="20" height="20"></button>
             </form>
+            <div id="dialog" title="Добавление задачи" align="center">
+                <form action="#"  th:action="@{/list/addissue (id=${currentList.getId()})}" method="post" >
+                    <input type="text" name="title">
+                    <input type="hidden" name="parentId" th:value="${currentList.getId()}">
+                    <button type="submit" class="btn btn-outline-success"><img src="/assets/img/plus2.png" align="center" width="20" height="20"></button>
+                </form>
+            </div>
+<!--            <a th:if="${currentList.getId()} != null">-->
+            <button type="submit" class="btn btn-outline-success"><img src="/assets/img/plus2.png" width="20" height="20"></button>
+<!--            </a>-->
         </div>
+        </span>
     </div>
-    <div id="dialog" title="Добавление задачи" align="center">
-        <form action="#" th:action="@{/list/addissue (id=${currentList.getId()})}" method="post" >
-            <input type="text" name="title">
-            <input type="hidden" name="parentId" th:value="${currentList.getId()}">
-            <button type="submit" class="btn btn-outline-success"><img src="/assets/img/plus2.png" align="center" width="20" height="20"></button>
-        </form>
-    </div>
-    <p></p>
-    <p><button type="submit" class="btn btn-outline-success"><img src="/assets/img/plus2.png" width="20" height="20"></button></p>
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
@@ -50,14 +58,14 @@
             dialog.dialog( "open" );
             });
     </script>
-    <div th:each="issue: ${issues}">
+    <span th:if="${currentList.getId()} != null" th:each="issue: ${issues}">
         <p></p>
-        <input type="checkbox">
-        <label th:utext="${issue.getTitle()}"></label>
+<!--        <input type="checkbox">-->
+        <label  th:utext="${issue.getTitle()}"></label>
         <form action="#" th:action="@{/issue/{issueId}/delete (issueId=${issue.getId()})}">
-            <button type="submit" class="btn btn-danger"><img src="/assets/img/del1.png" width="15" height="15"></button>
+            <button class="btn btn-danger"><img src="/assets/img/del1.png" width="15" height="15"></button>
         </form>
-    </div>
+    </span>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
